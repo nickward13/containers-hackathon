@@ -5,3 +5,4 @@ This repository is for use with the Microsoft Cloud Workshop for containers and 
 Pre-requisites on your machine include:
 - git
 - Azure CLI 2
+    - install or update first with brew install azure-cli or brew update / brew upgrade ref.: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
