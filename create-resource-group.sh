@@ -11,7 +11,7 @@ then
     exit
 fi
 
-echo "Creating resource group '$RGNAME' in $RGLOCATION..."
+./log-output.sh "Creating resource group '$RGNAME' in $RGLOCATION..."
 az group create --name $RGNAME --location $RGLOCATION
-echo "Finished creating resource group '$RGNAME' in $RGLOCATION."
+./log-output.sh "Finished creating resource group '$RGNAME' in $RGLOCATION."
 

@@ -6,6 +6,6 @@ then
 fi
 
 RGNAME=fabmedical-$1
-echo "Launching script to delete resource group $RGNAME..."
+./log-output.sh "Launching script to delete resource group $RGNAME..."
 ./delete-resource-group.sh $RGNAME
-echo "Finished script to delete resource group $RGNAME."
+./log-output.sh "Finished script to delete resource group $RGNAME."
