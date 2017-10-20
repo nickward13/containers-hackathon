@@ -6,6 +6,7 @@ then
 fi
 
 RGNAME=fabmedical-$1
-./log-output.sh "Launching script to delete resource group $RGNAME..."
+./log-output.sh "Deleting hackathon for $1..."
 ./delete-resource-group.sh $RGNAME
-./log-output.sh "Finished script to delete resource group $RGNAME."
+./rm -i ~/.ssh/$1*
+./log-output.sh "Deleted hackathon for $1."

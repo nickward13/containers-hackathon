@@ -8,5 +8,5 @@ fi
 export BUILDAGENTVMNAME="$RGNAME-build-agent"
 
 ./log-output.sh "Launching script to build agent with name $BUILDAGENTVMNAME..."
-./create-ubuntu-vm.sh $BUILDAGENTVMNAME
+./create-ubuntu-vm.sh $BUILDAGENTVMNAME $1
 ./log-output.sh "Finished exeucting script to build agent with name $BUILDAGENTVMNAME."
