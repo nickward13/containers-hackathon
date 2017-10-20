@@ -20,4 +20,5 @@ fi
 . ./create-build-server.sh $1
 . ./get-ip-address-of-vm.sh $BUILDAGENTVMNAME
 . ./configure-build-server.sh $1 $IP_ADDRESS
+. ./create-acr.sh $1
 ./log-output.sh "Finished provisioning exercise-00."
