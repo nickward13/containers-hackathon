@@ -15,6 +15,7 @@ fi
 RGNAME=fabmedical-$1
 
 ./log-output.sh "Started provisioning exercise-00..."
+
 . ./create-ssh-key.sh $1
 . ./set-resource-group-name-variable.sh $RGNAME
 . ./set-resource-group-location-variable.sh $LOCATION
@@ -25,4 +26,6 @@ RGNAME=fabmedical-$1
 . ./create-acr.sh $1
 . ./create-storage-account.sh $RGNAME stor$1
 . ./create-blob-container.sh $RGNAME stor$1 registrycredentials
+. ./create-acs.sh $1
+
 ./log-output.sh "Finished provisioning exercise-00."
