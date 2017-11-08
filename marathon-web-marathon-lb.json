@@ -1,0 +1,59 @@
+{
+    "id": "/weblb",
+    "cmd": null,
+    "cpus": 0.2,
+    "mem": 128,
+    "disk": 0,
+    "instances": 1,
+    "fetch": [
+      {
+        "uri": "https://storhect.blob.core.windows.net/registrycredentials/docker.tar.gz",
+        "extract": true,
+        "outputFile": "dockerConfig.tar.gz"
+      }
+    ],
+    "container": {
+      "type": "DOCKER",
+      "volumes": [],
+      "docker": {
+        "image": "acrhect.azurecr.io/fabmedical/content-web",
+        "network": "BRIDGE",
+        "portMappings": [
+          {
+            "containerPort": 3000,
+            "hostPort": 0,
+            "servicePort":10001,
+            "protocol": "tcp",
+            "labels": {}
+          }
+        ],
+        "privileged": false,
+        "parameters": [],
+        "forcePullImage": true
+      }
+    },
+    "env": {
+      "CONTENT_API_URL": "http://api.marathon.mesos:3001"
+    },
+    "healthChecks": [
+      {
+        "path": "/",
+        "protocol": "HTTP",
+        "portIndex": 0,
+        "gracePeriodSeconds": 300,
+        "intervalSeconds": 60,
+        "timeoutSeconds": 20,
+        "maxConsecutiveFailures": 3,
+        "ignoreHttp1xx": false
+      }
+    ],
+    "labels" : {
+      "HAPROXY_GROUP" : "external",
+      "HAPROXY_0_VHOST" : "13.70.138.13" 
+  
+    },
+      "upgradeStrategy": {
+      "maximumOverCapacity": 1,
+      "minimumHealthCapacity": 0
+    }  
+  }

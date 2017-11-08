@@ -1,0 +1,35 @@
+{
+  "id": "/api",
+  "instances": 1,
+  "fetch": [
+    {
+      "uri": "https://storhect.blob.core.windows.net/registrycredentials/docker.tar.gz",
+      "extract": true,
+      "outputFile": "dockerConfig.tar.gz"
+    }
+  ],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "acrhect.azurecr.io/fabmedical/content-api",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 3001,
+          "hostPort": 3001,
+          "protocol": "tcp",
+          "name": "content-api"
+        }
+      ]
+    }
+  },
+  "cpus": 1,
+  "mem": 128,
+  "requirePorts": true,
+  "healthChecks": [
+    {
+      "protocol": "MESOS_HTTP",
+      "path": "/speakers"
+    }
+  ]
+}

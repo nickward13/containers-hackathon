@@ -26,7 +26,7 @@ ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker build -t content-web FabMedical/FabM
 ./log-output.sh "Finished building container images."
 
 ./log-output.sh "Copy images to ACR..."
-ACRNAME=acr$1
+ACRNAME=acr$UNIQUE_ID
 ACRLOGINSERVER=$ACRNAME'.azurecr.io'
 ACRPASS=$(az acr credential show --name $ACRNAME --query "passwords[0].value" -o tsv)
 ACRUSER=$(az acr credential show --name $ACRNAME --query "username" -o tsv)
@@ -35,5 +35,6 @@ ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker tag content-web $ACRLOGINSERVER/fabm
 ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker tag content-api $ACRLOGINSERVER/fabmedical/content-api
 ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker tag $ACRLOGINSERVER/fabmedical/content-web:latest $ACRLOGINSERVER/fabmedical/content-web:v1
 ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker tag $ACRLOGINSERVER/fabmedical/content-api:latest $ACRLOGINSERVER/fabmedical/content-api:v1
-ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker push $ACRLOGINSERVER/fabmedical/content-web
-ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker push $ACRLOGINSERVER/fabmedical/content-api
+ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker push $ACRLOGINSERVER/fabmedical/content-web:latest
+ssh -i ~/.ssh/$UNIQUE_ID $IP_ADDRESS docker push $ACRLOGINSERVER/fabmedical/content-api:latest
+./log-output.sh "Finished copying images to ACR."
